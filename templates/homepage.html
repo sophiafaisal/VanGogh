@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Van Gogh's Art</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+     <!-- jQuery -->
+     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+
+     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        
+</head>
+<body>
+    <div class="top-bar">
+        <h1>Van Gogh’s Art</h1>
+        <nav>
+            <a href="/" style="color: #f9f06b;">Home</a> |
+            <a href="/learn">Learn</a> |
+            <a href="/quiz">Quiz</a>
+        </nav>
+    </div>
+
+    <div class="highlight-box position-absolute top-50 end-0 translate-middle-y me-5">
+        <p><strong>Everyone’s heard of Van Gogh’s masterpieces, but few know the stories behind them.</strong></p>
+        <p>Welcome to a journey into his mind! </p>
+        <a href="/learn" class="btn btn-warning mt-3 fw-bold">Start</a>
+    </div>
+
+    <div class="quote-box">
+        <p><strong>There are colours that make each other shine, that make a couple, complete each other like man and wife.</strong><br>
+        — Vincent Van Gogh</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

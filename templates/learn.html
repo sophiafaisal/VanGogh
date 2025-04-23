@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn | Van Gogh's Art</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <div class="top-bar">
+    <h1>Van Gogh’s Art</h1>
+    <nav>
+      <a href="/">Home</a> |
+      <a href="/learn" style="color: #f9f06b">Learn</a> |
+      <a href="/quiz">Quiz</a>
+    </nav>
+  </div>
+
+  <div class="section-title">
+    Select an art piece to learn more about!
+  </div>
+
+  <div class="gallery-wrapper">
+    <div class="gallery">
+      <a href="/learn/1">
+        <img src="/static/sunflowers.jpg" class="row1" alt="Sunflowers">
+        <div class = "painting_title"> Sunflower </div>
+      </a>
+      <a href="/learn/2">
+        <img src="/static/cafe-terrace-at-night.jpg" class="row1" alt="Cafe Terrace at Night">
+        <div class = "painting_title"> Café Terrace at Night </div>
+      </a>
+      <a href="/learn/3">
+        <img src="/static/irises.jpeg" class="row1" alt="Irises">
+        <div class = "painting_title"> Irises </div>
+      </a>
+      <a href="/learn/4">
+        <img src="/static/selfportrait.webp" class="row1" alt="Self Portrait as a Painter">
+        <div class = "painting_title"> Self Portrait as a Painter </div>
+      </a>
+  
+      <a href="/learn/5">
+        <img src="/static/thebedroom.jpg" class="row2" alt="The Bedroom">
+        <div class = "painting_title"> The Bedroom </div>
+      </a>
+      <a href="/learn/6">
+        <img src="/static/potatoeaters.jpg" class="row2" alt="The Potato Eaters">
+        <div class = "painting_title"> The Potato Eaters </div>
+      </a>
+      <a href="/learn/7">
+        <img src="/static/almondcherryblossom.jpg" class="row2" alt="Almond Blossom">
+        <div class = "painting_title"> Almond Blossom </div>
+      </a>
+      <a href="/learn/8">
+        <img src="/static/seascape.jpg" class="row2" alt="Seascape">
+        <div class = "painting_title"> Seascape </div>
+      </a>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

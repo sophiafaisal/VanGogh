@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="top-bar">
+    <h1>Van Gogh’s Art</h1>
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/learn">Learn</a> |
+        <a href="/quiz" style="color: #f9f06b">Quiz</a>
+    </nav>
+  </div>
+
+  <div class="quiz-container">
+    {% if question_num == 0 %}
+      <div class="quiz-intro-container">
+        <h2 class="quiz-intro-title">Are you ready for the quiz?</h2>
+        <div class="start-buttons">
+          <a href="/quiz/1" class="btn btn-nav">Start</a>
+          <a href="/learn" class="btn btn-nav">No, Not Yet</a>
+        </div>
+      </div>
+    
+    {% elif question_num == 1 %}
+      <form method="POST">
+        <div class="frame-wrapper">
+          <img src="/static/blank_canvas.png" alt="canvas frame" class="frame-img">
+          <div class="frame-content">
+            <h3>What colour did Van Gogh claim as his signature colour?</h3>
+            <div class="radio-option">
+              <input type="radio" id="q1a" name="answer" value="yellow" {% if selected == 'yellow' %}checked{% endif %}>
+              <label for="q1a" class="text-options">Yellow</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="q1b" name="answer" value="blue" {% if selected == 'blue' %}checked{% endif %}>
+              <label for="q1b" class="text-options">Blue</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="q1c" name="answer" value="orange" {% if selected == 'orange' %}checked{% endif %}>
+              <label for="q1c" class="text-options">Orange</label>
+            </div>  
+            <div class="d-flex justify-content-between mt-4">
+              <a href="/quiz" class="btn btn-nav">Back</a>
+              <button type="submit" class="btn btn-nav">Next</button>
+            </div>
+          </div>
+        </div>
+      </form>    
+
+    {% elif question_num == 2 %}
+      <form method="POST">
+        <div class="frame-wrapper">
+          <img src="/static/blank_canvas.png" alt="canvas frame" class="frame-img">
+          <div class="frame-content">
+            <h3>What colour did Van Gogh use to show his validity as a true painter?</h3>
+            <div class="radio-option">
+              <input type="radio" id="q2a" name="answer" value="yellow" {% if selected == 'yellow' %}checked{% endif %}>
+              <label for="q2a" class="text-options">Yellow</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="q2b" name="answer" value="blue" {% if selected == 'blue' %}checked{% endif %}>
+              <label for="q2b" class="text-options">Blue</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="q2c" name="answer" value="orange" {% if selected == 'orange' %}checked{% endif %}>
+              <label for="q2c" class="text-options">Orange</label>
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+              <a href="/quiz/1" class="btn btn-nav">Back</a>
+              <button type="submit" class="btn btn-nav">Next</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    {% elif question_num == 3 %}
+      <form method="POST">
+        <div class="frame-wrapper">
+          <img src="/static/blank_canvas.png" alt="canvas frame" class="frame-img">
+          <div class="frame-content">
+            <h3>Why did Van Gogh use mud tones?</h3>
+            <div class="radio-option">
+              <input type="radio" id="q3a" name="answer" value="a" {% if selected == 'a' %}checked{% endif %}>
+              <label for="q3a" class="text-options">It reflected the colours used by major Dutch artists at this period of time.</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="q3b" name="answer" value="b" {% if selected == 'b' %}checked{% endif %}>
+              <label for="q3b" class="text-options">To illustrate melancholy.</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="q3c" name="answer" value="c" {% if selected == 'c' %}checked{% endif %}>
+              <label for="q3c" class="text-options">He felt mud tones could go with every other colour.</label>
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+              <a href="/quiz/2" class="btn btn-nav">Back</a>
+              <button type="submit" class="btn btn-nav">Next</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    {% elif question_num == 4 %}
+      <form method="POST">
+        <div class="frame-wrapper">
+          <img src="/static/blank_canvas.png" alt="canvas frame" class="frame-img">
+          <div class="frame-content">
+            <h3>Which painting is thought to be the first one Van Gogh created during his stay in the asylum?</h3>
+            <div class="radio-option">
+              <input type="radio" id="q4a" name="answer" value="a" {% if selected == 'a' %}checked{% endif %}>
+              <label for="q4a" class="text-options">Starry Night</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="q4b" name="answer" value="b" {% if selected == 'b' %}checked{% endif %}>
+              <label for="q4b" class="text-options">The Irises</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="q4c" name="answer" value="c" {% if selected == 'c' %}checked{% endif %}>
+              <label for="q4c" class="text-options">Self-Portrait</label>
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+              <a href="/quiz/3" class="btn btn-nav">Back</a>
+              <button type="submit" class="btn btn-nav">Next</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    {% elif question_num == 5 %}
+      <form method="POST">
+        <div class="frame-wrapper">
+          <img src="/static/blank_canvas.png" alt="canvas frame" class="frame-img">
+          <div class="frame-content">
+            <h3>What did Van Gogh think of painting scenes of the night compared to the day?</h3>
+            <div class="radio-option">
+              <input type="radio" id="q5a" name="answer" value="a" {% if selected == 'a' %}checked{% endif %}>
+              <label for="q5a" class="text-options">He felt the night was so much more alive than the daytime.</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="q5b" name="answer" value="b" {% if selected == 'b' %}checked{% endif %}>
+              <label for="q5b" class="text-options">His favourite subject to paint were stars. </label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="q5c" name="answer" value="c" {% if selected == 'c' %}checked{% endif %}>
+              <label for="q5c" class="text-options">He felt that there weren't enough paintings of scenes of the night.</label>
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+              <a href="/quiz/4" class="btn btn-nav">Back</a>
+              <!-- Finish must be a submit button to save answer -->
+              <button type="submit" class="btn btn-nav">Finish</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    {% endif %}
+  </div>
+</body>
+</html>

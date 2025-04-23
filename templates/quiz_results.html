@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Results</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .results-container {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      max-width: 700px;
+      margin: 80px auto;
+      text-align: center;
+    }
+    .answer-card {
+      padding: 16px;
+      border-radius: 12px;
+      margin: 15px 0;
+      color: white;
+      font-weight: 600;
+    }
+    .correct {
+      background-color: #28a745; /* green */
+    }
+    .incorrect {
+      background-color: #dc3545; /* red */
+    }
+    .answer-card .small-text {
+      font-weight: normal;
+      font-size: 14px;
+      color: #f8f9fa;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top-bar">
+    <h1>Van Gogh’s Art</h1>
+    <nav>
+      <a href="/">Home</a> |
+      <a href="/learn">Learn</a> |
+      <a href="/quiz" style="color: #f9f06b">Quiz</a>
+    </nav>
+  </div>
+
+  <div class="results-container">
+    <h2>Your Score: {{ score }} / {{ total }}</h2>
+
+    {% for qnum in range(1, total + 1) %}
+      {% set q_str = qnum|string %}
+      {% set user_answer = answers.get(q_str) %}
+      {% set correct = correct_answers.get(q_str) %}
+      {% if user_answer == correct %}
+        <div class="answer-card correct">
+          Question {{ qnum }} — Correct ({{ user_answer }})
+        </div>
+      {% else %}
+        <div class="answer-card incorrect">
+          Question {{ qnum }} — Incorrect (you chose: {{ user_answer or 'No answer' }})<br>
+          <span class="small-text">Correct answer: {{ correct }}</span>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    <a href="/" class="btn btn-nav mt-4">Return to Home</a>
+  </div>
+</body>
+</html>

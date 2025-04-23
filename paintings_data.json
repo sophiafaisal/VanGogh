@@ -1,0 +1,87 @@
+[
+  {
+    "title": "“Sunflowers” - Yellows",
+    "image": "sunflowers.jpg",
+    "facts": [
+        "Van Gogh  talks of his friend Gauguin coming to live with him in his yellow house in Arles." ,
+        "He says he intends to decorate the whole studio with nothing but sunflowers.",
+        "Though originally made for Gauguin, Van Gogh later took the sunflower as his own personal artistic signature, telling his brother Theo in another letter in 1889 that 'the sunflower is mine.'",
+        "When Van Gogh moved to Arles, he entered into a prolific period in which he infused his works with yellow hues.",
+        "Several theories attempt to explain this. One asserts he overindulged in absinthe while another suggests he took too much digitalis. Either substance could have tinted what he saw with yellow." ,  
+        
+        "How lovely yellow is! It stands for the sun."
+    ]
+  },
+  {
+    "title": "Cafe Terrace at Night",
+    "image": "cafe-terrace-at-night.jpg",
+    
+    "facts": [
+        "This painting of a colorful outdoor view is a picturesque work recalls Van Gogh's mood when he wrote that 'the night is more alive and more richly colored than the day.' ",
+        "The color is more profuse and the eye wanders along the irregular shapes fitted to each other like a jigsaw puzzle design.",
+        "The yellow of the cafe plays against the blue-black of the remote street and the violet-blue of the foreground door, and, by a paradox of composition that helps to unify the work, at the strongest point of contrast the awning's blunt corner nearest to us touches the remote blue sky."
+    ]
+  },
+  {
+    "title": "Irises",
+    "image": "irises.jpeg",
+    "facts": [
+        "In 1889 Van Gogh entered Saint-Paul-de-Mausole, an asylum at Saint-Rémy, originally a 12th-century Augustinian monastery.",
+        "In the asylum, between attacks, Van Gogh devoted himself to his art with a desperate determination, knowing that this alone might save him.",
+        "He called painting 'the lightning conductor for my illness.'",
+        "Observing his continued ability to paint, he felt sure that he was not really a madman.",
+        "Irises are perhaps the first subject he did in the asylum.",
+        "It preceded his first attack there and at first glance shows no evident trace of the moodiness and high tension that appear in many of the later works."
+    ]
+  },
+  {
+    "title": "Self Portrait",
+    "image": "selfportrait.webp",
+    "facts": [
+       "In Paris, Vincent transformed into a modern artist. He felt this metamorphosis intensely." ,
+        "This is why he portrayed himself as a painter in a self-portrait. He used vibrant, vivid colours to convey that these were the colours of a modern artist.",
+        "He proudly signed the painting in orange-red."
+        
+    ]
+  },
+  {
+    "title": "The Bedroom",
+    "image": "thebedroom.jpg",
+    "facts": [
+      "Painted in his Yellow House in Arles.",
+      "He wanted to create a peaceful, restful atmosphere.",
+      "The skewed perspective gives it a dreamlike quality.",
+      "There are 3 versions of this painting."
+    ]
+  },
+  {
+    "title": "The Potato Eaters",
+    "image": "potatoeaters.jpg",
+    "facts": [
+      "Van Gogh considered this one of his best works.",
+      "It shows a rural family eating dinner by lamplight.",
+      "He wanted to capture the authenticity of peasant life.",
+      "Painted before his move to Paris and shift to bright colors."
+    ]
+  },
+  {
+    "title": "Almond Blossom",
+    "image": "almondcherryblossom.jpg",
+    "facts": [
+      "Painted for the birth of his nephew, also named Vincent.",
+      "Symbolizes new life and hope.",
+      "Strong influence from Japanese art in its composition.",
+      "One of his most delicate and joyful works."
+    ]
+  },
+  {
+    "title": "Seascape",
+    "image": "seascape.jpg",
+    "facts": [
+      "Painted during his time in Saintes-Maries-de-la-Mer.",
+      "Captures the movement of the Mediterranean Sea.",
+      "Thick, impasto brushstrokes mimic waves and wind.",
+      "An example of Van Gogh’s love of nature’s power."
+    ]
+  }
+]
