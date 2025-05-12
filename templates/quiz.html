@@ -5,17 +5,60 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
+<!-- Correct Answer Modal -->
+<div class="modal fade" id="answerModal" tabindex="-1" aria-labelledby="answerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="answerModalLabel">Incorrect Answer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      {% if feedback == 'Incorrect!' %}
+      <div class="modal-body">
+        The correct answer is: <strong>{{ correct }}</strong>
+      </div>
+      {% endif %}
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <body>
-  <div class="top-bar">
-    <h1>Van Gogh’s Art</h1>
-    <nav>
-        <a href="/">Home</a> |
-        <a href="/learn">Learn</a> |
-        <a href="/quiz" style="color: #f9f06b">Quiz</a>
+  <div class="top-bar" style="display: flex; justify-content: space-between; padding: 20px;">
+    <!-- Left: Title + Search -->
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <h1 style="margin: 0;">
+        <a href="/" style="text-decoration: none; color: white;">Van Gogh’s Art</a>
+      </h1>
+  
+      <input id="searchInput" list="autocompleteOptions" placeholder="Search painting..." 
+             style="padding: 8px 12px; border-radius: 4px; border: none; width: 180px;">
+      <datalist id="autocompleteOptions"></datalist>
+  
+      <button onclick="searchPainting()" 
+              style="padding: 8px 14px; border-radius: 4px; border: none; background-color: #f9f06b; font-weight: bold;">
+        Search
+      </button>
+    </div>
+  
+    <!-- Right: Nav links -->
+    <nav style="font-size: 1.1rem;">
+      <a href="/" >Home</a>
+      <span class="nav-divider"></span>
+      <a href="/learn">Learn</a>
+      <span class="nav-divider"></span>
+      <a href="/quiz" style="color: #f9f06b">Quiz</a>
     </nav>
   </div>
+
+  <a href="/my_activity" class="floating-activity-btn">📋 My Activity</a>
 
   <div class="quiz-container">
     {% if question_num == 0 %}
@@ -34,24 +77,47 @@
           <div class="frame-content">
             <h3>What colour did Van Gogh claim as his signature colour?</h3>
             <div class="radio-option">
-              <input type="radio" id="q1a" name="answer" value="yellow" {% if selected == 'yellow' %}checked{% endif %}>
+              <input type="radio" id="q1a" name="answer" value="Yellow" {% if selected == 'Yellow' %}checked{% endif %}>
               <label for="q1a" class="text-options">Yellow</label>
             </div>
             <div class="radio-option">
-              <input type="radio" id="q1b" name="answer" value="blue" {% if selected == 'blue' %}checked{% endif %}>
+              <input type="radio" id="q1b" name="answer" value="Blue" {% if selected == 'Blue' %}checked{% endif %}>
               <label for="q1b" class="text-options">Blue</label>
             </div>
             <div class="radio-option">
-              <input type="radio" id="q1c" name="answer" value="orange" {% if selected == 'orange' %}checked{% endif %}>
+              <input type="radio" id="q1c" name="answer" value="Orange" {% if selected == 'Orange' %}checked{% endif %}>
               <label for="q1c" class="text-options">Orange</label>
             </div>  
-            <div class="d-flex justify-content-between mt-4">
-              <a href="/quiz" class="btn btn-nav">Back</a>
-              <button type="submit" class="btn btn-nav">Next</button>
+            
+            <!-- Reserve space for 1 line of feedback; tweak height as needed (40-48px works well) -->
+            <div style="height: 48px; display: flex; align-items: center; justify-content: center;">
+              {% if feedback %}
+                <div class="alert {{ 'alert-success' if feedback == 'Correct!' else 'alert-danger' }} mb-0 py-2 px-3" style="width: 100%; text-align: center; font-size: 1.12rem;">
+                  {{ feedback }}
+                </div>
             </div>
-          </div>
-        </div>
-      </form>    
+
+            {% if show_modal %}
+            <script>
+              window.addEventListener('DOMContentLoaded', function() {
+                var myModal = new bootstrap.Modal(document.getElementById('answerModal'));
+                myModal.show();
+              });
+            </script>
+            {% endif %}
+
+            <div class="d-flex justify-content-between mt-4">
+              <a href="/quiz/{{ question_num - 1 if question_num > 1 else '' }}" class="btn btn-nav">Back</a>
+              <a href="/quiz/{{ question_num + 1 }}" class="btn btn-nav">Next</a>
+            </div>
+          {% else %}
+            <div class="d-flex justify-content-between mt-4">
+              <a href="/quiz/{{ question_num - 1 if question_num > 1 else '' }}" class="btn btn-nav">Back</a>
+              <button type="submit" class="btn btn-nav">Submit</button>
+            </div>
+          {% endif %}
+
+
 
     {% elif question_num == 2 %}
       <form method="POST">
@@ -60,24 +126,46 @@
           <div class="frame-content">
             <h3>What colour did Van Gogh use to show his validity as a true painter?</h3>
             <div class="radio-option">
-              <input type="radio" id="q2a" name="answer" value="yellow" {% if selected == 'yellow' %}checked{% endif %}>
+              <input type="radio" id="q2a" name="answer" value="Yellow" {% if selected == 'Yellow' %}checked{% endif %}>
               <label for="q2a" class="text-options">Yellow</label>
             </div>
             <div class="radio-option">
-              <input type="radio" id="q2b" name="answer" value="blue" {% if selected == 'blue' %}checked{% endif %}>
+              <input type="radio" id="q2b" name="answer" value="Blue" {% if selected == 'Blue' %}checked{% endif %}>
               <label for="q2b" class="text-options">Blue</label>
             </div>
             <div class="radio-option">
-              <input type="radio" id="q2c" name="answer" value="orange" {% if selected == 'orange' %}checked{% endif %}>
+              <input type="radio" id="q2c" name="answer" value="Orange" {% if selected == 'Orange' %}checked{% endif %}>
               <label for="q2c" class="text-options">Orange</label>
             </div>
-            <div class="d-flex justify-content-between mt-4">
-              <a href="/quiz/1" class="btn btn-nav">Back</a>
-              <button type="submit" class="btn btn-nav">Next</button>
+
+            <!-- Reserve space for 1 line of feedback; tweak height as needed (40-48px works well) -->
+            <div style="height: 48px; display: flex; align-items: center; justify-content: center;">
+              {% if feedback %}
+                <div class="alert {{ 'alert-success' if feedback == 'Correct!' else 'alert-danger' }} mb-0 py-2 px-3" style="width: 100%; text-align: center; font-size: 1.12rem;">
+                  {{ feedback }}
+                </div>
             </div>
-          </div>
-        </div>
-      </form>
+
+            {% if show_modal %}
+            <script>
+              window.addEventListener('DOMContentLoaded', function() {
+                var myModal = new bootstrap.Modal(document.getElementById('answerModal'));
+                myModal.show();
+              });
+            </script>
+            {% endif %}
+
+            <div class="d-flex justify-content-between mt-4">
+              <a href="/quiz/{{ question_num - 1 if question_num > 1 else '' }}" class="btn btn-nav">Back</a>
+              <a href="/quiz/{{ question_num + 1 }}" class="btn btn-nav">Next</a>
+            </div>
+          {% else %}
+            <div class="d-flex justify-content-between mt-4">
+              <a href="/quiz/{{ question_num - 1 if question_num > 1 else '' }}" class="btn btn-nav">Back</a>
+              <button type="submit" class="btn btn-nav">Submit</button>
+            </div>
+          {% endif %}
+
 
     {% elif question_num == 3 %}
       <form method="POST">
@@ -86,7 +174,7 @@
           <div class="frame-content">
             <h3>Why did Van Gogh use mud tones?</h3>
             <div class="radio-option">
-              <input type="radio" id="q3a" name="answer" value="a" {% if selected == 'a' %}checked{% endif %}>
+              <input type="radio" id="q3a" name="answer" value="It reflected the colours used by major Dutch artists at this period of time." {% if selected == "It reflected the colours used by major Dutch artists at this period of time." %}checked{% endif %}>
               <label for="q3a" class="text-options">It reflected the colours used by major Dutch artists at this period of time.</label>
             </div>
             <div class="radio-option">
@@ -94,16 +182,37 @@
               <label for="q3b" class="text-options">To illustrate melancholy.</label>
             </div>
             <div class="radio-option">
-              <input type="radio" id="q3c" name="answer" value="c" {% if selected == 'c' %}checked{% endif %}>
+              <input type="radio" id="q3c" name="answer" value="He felt mud tones could go with every other colour." {% if selected == "He felt mud tones could go with every other colour." %}checked{% endif %}>
               <label for="q3c" class="text-options">He felt mud tones could go with every other colour.</label>
             </div>
-            <div class="d-flex justify-content-between mt-4">
-              <a href="/quiz/2" class="btn btn-nav">Back</a>
-              <button type="submit" class="btn btn-nav">Next</button>
+            
+            <!-- Reserve space for 1 line of feedback; tweak height as needed (40-48px works well) -->
+            <div style="height: 48px; display: flex; align-items: center; justify-content: center;">
+              {% if feedback %}
+                <div class="alert {{ 'alert-success' if feedback == 'Correct!' else 'alert-danger' }} mb-0 py-2 px-3" style="width: 100%; text-align: center; font-size: 1.12rem;">
+                  {{ feedback }}
+                </div>
             </div>
-          </div>
-        </div>
-      </form>
+
+            {% if show_modal %}
+            <script>
+              window.addEventListener('DOMContentLoaded', function() {
+                var myModal = new bootstrap.Modal(document.getElementById('answerModal'));
+                myModal.show();
+              });
+            </script>
+            {% endif %}
+           
+            <div class="d-flex justify-content-between mt-4">
+              <a href="/quiz/{{ question_num - 1 if question_num > 1 else '' }}" class="btn btn-nav">Back</a>
+              <a href="/quiz/{{ question_num + 1 }}" class="btn btn-nav">Next</a>
+            </div>
+          {% else %}
+            <div class="d-flex justify-content-between mt-4">
+              <a href="/quiz/{{ question_num - 1 if question_num > 1 else '' }}" class="btn btn-nav">Back</a>
+              <button type="submit" class="btn btn-nav">Submit</button>
+            </div>
+          {% endif %}
 
     {% elif question_num == 4 %}
       <form method="POST">
@@ -112,24 +221,45 @@
           <div class="frame-content">
             <h3>Which painting is thought to be the first one Van Gogh created during his stay in the asylum?</h3>
             <div class="radio-option">
-              <input type="radio" id="q4a" name="answer" value="a" {% if selected == 'a' %}checked{% endif %}>
+              <input type="radio" id="q4a" name="answer" value="Starry Night" {% if selected == "Starry Night" %}checked{% endif %}>
               <label for="q4a" class="text-options">Starry Night</label>
             </div>
             <div class="radio-option">
-              <input type="radio" id="q4b" name="answer" value="b" {% if selected == 'b' %}checked{% endif %}>
+              <input type="radio" id="q4b" name="answer" value="The Irises" {% if selected == "The Irises" %}checked{% endif %}>
               <label for="q4b" class="text-options">The Irises</label>
             </div>
             <div class="radio-option">
-              <input type="radio" id="q4c" name="answer" value="c" {% if selected == 'c' %}checked{% endif %}>
+              <input type="radio" id="q4c" name="answer" value="Self-Portrait" {% if selected == "Self-Portrait" %}checked{% endif %}>
               <label for="q4c" class="text-options">Self-Portrait</label>
             </div>
-            <div class="d-flex justify-content-between mt-4">
-              <a href="/quiz/3" class="btn btn-nav">Back</a>
-              <button type="submit" class="btn btn-nav">Next</button>
+
+            <!-- Reserve space for 1 line of feedback; tweak height as needed (40-48px works well) -->
+            <div style="height: 48px; display: flex; align-items: center; justify-content: center;">
+              {% if feedback %}
+                <div class="alert {{ 'alert-success' if feedback == 'Correct!' else 'alert-danger' }} mb-0 py-2 px-3" style="width: 100%; text-align: center; font-size: 1.12rem;">
+                  {{ feedback }}
+                </div>
             </div>
-          </div>
-        </div>
-      </form>
+
+            {% if show_modal %}
+            <script>
+              window.addEventListener('DOMContentLoaded', function() {
+                var myModal = new bootstrap.Modal(document.getElementById('answerModal'));
+                myModal.show();
+              });
+            </script>
+            {% endif %}
+
+            <div class="d-flex justify-content-between mt-4">
+              <a href="/quiz/{{ question_num - 1 if question_num > 1 else '' }}" class="btn btn-nav">Back</a>
+              <a href="/quiz/{{ question_num + 1 }}" class="btn btn-nav">Next</a>
+            </div>
+          {% else %}
+            <div class="d-flex justify-content-between mt-4">
+              <a href="/quiz/{{ question_num - 1 if question_num > 1 else '' }}" class="btn btn-nav">Back</a>
+              <button type="submit" class="btn btn-nav">Submit</button>
+            </div>
+          {% endif %}
 
     {% elif question_num == 5 %}
       <form method="POST">
@@ -138,26 +268,98 @@
           <div class="frame-content">
             <h3>What did Van Gogh think of painting scenes of the night compared to the day?</h3>
             <div class="radio-option">
-              <input type="radio" id="q5a" name="answer" value="a" {% if selected == 'a' %}checked{% endif %}>
+              <input type="radio" id="q5a" name="answer" value="He felt the night was so much more alive than the daytime." {% if selected == "He felt the night was so much more alive than the daytime." %}checked{% endif %}>
               <label for="q5a" class="text-options">He felt the night was so much more alive than the daytime.</label>
             </div>
             <div class="radio-option">
-              <input type="radio" id="q5b" name="answer" value="b" {% if selected == 'b' %}checked{% endif %}>
-              <label for="q5b" class="text-options">His favourite subject to paint were stars. </label>
+              <input type="radio" id="q5b" name="answer" value="His favourite subject to paint were stars." {% if selected == "His favourite subject to paint were stars." %}checked{% endif %}>
+              <label for="q5b" class="text-options">His favourite subject to paint were stars.</label>
             </div>
             <div class="radio-option">
-              <input type="radio" id="q5c" name="answer" value="c" {% if selected == 'c' %}checked{% endif %}>
-              <label for="q5c" class="text-options">He felt that there weren't enough paintings of scenes of the night.</label>
+              <input type="radio" id="q5c" name="answer" value="There weren't enough paintings of the night." {% if selected == "There weren't enough paintings of the night." %}checked{% endif %}>
+              <label for="q5c" class="text-options">There weren't enough paintings of the night.</label>
             </div>
+            
+            <!-- Reserve space for 1 line of feedback; tweak height as needed (40-48px works well) -->
+            <div style="height: 48px; display: flex; align-items: center; justify-content: center;">
+              {% if feedback %}
+                <div class="alert {{ 'alert-success' if feedback == 'Correct!' else 'alert-danger' }} mb-0 py-2 px-3" style="width: 100%; text-align: center; font-size: 1.12rem;">
+                  {{ feedback }}
+                </div>
+            </div>
+
+            {% if feedback == 'Incorrect!' %}
+            <script>
+              window.addEventListener('DOMContentLoaded', function() {
+                var myModal = new bootstrap.Modal(document.getElementById('answerModal'));
+                myModal.show();
+              });
+            </script>
+            {% endif %}
+
+
             <div class="d-flex justify-content-between mt-4">
               <a href="/quiz/4" class="btn btn-nav">Back</a>
-              <!-- Finish must be a submit button to save answer -->
+              <a href="/quiz/results" class="btn btn-nav">Finish</a>
+            </div>
+          {% else %}
+            <div class="d-flex justify-content-between mt-4">
+              <a href="/quiz/4" class="btn btn-nav">Back</a>
               <button type="submit" class="btn btn-nav">Finish</button>
             </div>
-          </div>
-        </div>
-      </form>
+          {% endif %}
+          
     {% endif %}
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const paintingTitles = [
+      "Sunflowers",
+      "Café Terrace at Night",
+      "Irises",
+      "Self Portrait as a Painter",
+      "The Bedroom",
+      "The Potato Eaters",
+      "Almond Blossom",
+      "Seascape"
+    ];
+  
+    function searchPainting() {
+      const input = document.getElementById('searchInput').value.trim().toLowerCase();
+      const match = paintingTitles.find(title => title.toLowerCase() === input);
+  
+      if (match) {
+        // Redirect to the corresponding lesson (assuming 1-indexed order)
+        const index = paintingTitles.findIndex(title => title === match) + 1;
+        window.location.href = `/learn/${index}`;
+      } else {
+        alert("Sorry, we don't have that painting here.");
+      }
+    }
+  
+    // Optional: autocomplete
+    document.getElementById('searchInput').addEventListener('input', function () {
+      const input = this.value.toLowerCase();
+      const suggestions = paintingTitles.filter(title =>
+        title.toLowerCase().startsWith(input)
+      );
+  
+      this.setAttribute('list', 'autocompleteOptions');
+      const datalist = document.getElementById('autocompleteOptions') || document.createElement('datalist');
+      datalist.id = 'autocompleteOptions';
+      datalist.innerHTML = '';
+  
+      suggestions.forEach(title => {
+        const option = document.createElement('option');
+        option.value = title;
+        datalist.appendChild(option);
+      });
+  
+      document.body.appendChild(datalist);
+    });
+  </script>
+
 </body>
 </html>

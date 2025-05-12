@@ -1,6 +1,6 @@
 [
   {
-    "title": "“Sunflowers” - Yellows",
+    "title": "Sunflowers - 1888",
     "image": "sunflowers.jpg",
     "facts": [
         "Van Gogh  talks of his friend Gauguin coming to live with him in his yellow house in Arles." ,
@@ -9,21 +9,21 @@
         "When Van Gogh moved to Arles, he entered into a prolific period in which he infused his works with yellow hues.",
         "Several theories attempt to explain this. One asserts he overindulged in absinthe while another suggests he took too much digitalis. Either substance could have tinted what he saw with yellow." ,  
         
-        "How lovely yellow is! It stands for the sun."
+        "'How lovely yellow is! It stands for the sun.' - Vincent"
     ]
   },
   {
-    "title": "Cafe Terrace at Night",
+    "title": "Cafe Terrace at Night - September 1888",
     "image": "cafe-terrace-at-night.jpg",
     
     "facts": [
-        "This painting of a colorful outdoor view is a picturesque work recalls Van Gogh's mood when he wrote that 'the night is more alive and more richly colored than the day.' ",
+        "This painting of a colorful outdoor view is a picturesque work that recalls Van Gogh's mood when he wrote that 'the night is more alive and more richly colored than the day.' ",
         "The color is more profuse and the eye wanders along the irregular shapes fitted to each other like a jigsaw puzzle design.",
         "The yellow of the cafe plays against the blue-black of the remote street and the violet-blue of the foreground door, and, by a paradox of composition that helps to unify the work, at the strongest point of contrast the awning's blunt corner nearest to us touches the remote blue sky."
     ]
   },
   {
-    "title": "Irises",
+    "title": "Irises - May 1889",
     "image": "irises.jpeg",
     "facts": [
         "In 1889 Van Gogh entered Saint-Paul-de-Mausole, an asylum at Saint-Rémy, originally a 12th-century Augustinian monastery.",
@@ -35,53 +35,65 @@
     ]
   },
   {
-    "title": "Self Portrait",
+    "title": "Self Portrait - 1887 – 1888",
     "image": "selfportrait.webp",
     "facts": [
+       "Vincent said 'People say – and I’m quite willing to believe it – that it’s difficult to know oneself – but it’s not easy to paint oneself either.'",
+       "Vincent produced his self-portraits because he wanted to practise painting people. He was short of money in that period and struggled to find models. So the artist chose the simplest solution and painted himself.",
        "In Paris, Vincent transformed into a modern artist. He felt this metamorphosis intensely." ,
         "This is why he portrayed himself as a painter in a self-portrait. He used vibrant, vivid colours to convey that these were the colours of a modern artist.",
-        "He proudly signed the painting in orange-red."
-        
+        "He proudly signed the painting in orange-red.",
+        "The self-portraits have shaped our image of Vincent."
     ]
   },
   {
-    "title": "The Bedroom",
+    "title": "The Bedroom – October 1888",
     "image": "thebedroom.jpg",
     "facts": [
-      "Painted in his Yellow House in Arles.",
-      "He wanted to create a peaceful, restful atmosphere.",
-      "The skewed perspective gives it a dreamlike quality.",
-      "There are 3 versions of this painting."
+      "Painted in his bedroom in the Yellow House in Arles.",
+      "Van Gogh prepared the room himself with simple furniture and his own artwork.",
+      "He used bright colours to express 'repose' and 'sleep'.",
+      "The original walls and doors were purple — now discoloured to blue.",
+      "The skewed rear wall was real; the corner in the house was actually slanted.",
+      "Van Gogh intentionally flattened the space and removed shadows to mimic Japanese prints.",
+      "He wrote to Theo that this was one of his favourite works after recovering from illness."
     ]
+
   },
   {
-    "title": "The Potato Eaters",
+    "title": "The Potato Eaters - April 1885",
     "image": "potatoeaters.jpg",
     "facts": [
-      "Van Gogh considered this one of his best works.",
-      "It shows a rural family eating dinner by lamplight.",
-      "He wanted to capture the authenticity of peasant life.",
-      "Painted before his move to Paris and shift to bright colors."
+      "Van Gogh considered The Potato Eaters a showpiece to prove his figure painting skills.",
+      "He intentionally used a complex composition with five figures.",
+      "The peasants have coarse faces and bony hands to reflect the harsh reality of rural life.",
+      "He wanted to show that the peasants had 'honestly earned their food' through manual labor.",
+      "He painted them in earthy tones resembling unpeeled potatoes.",
+      "These 'mud tones' reflected the palette used by Dutch artists at the time."
     ]
+
   },
   {
-    "title": "Almond Blossom",
+    "title": "Almond - Blossom February 1890",
     "image": "almondcherryblossom.jpg",
     "facts": [
-      "Painted for the birth of his nephew, also named Vincent.",
-      "Symbolizes new life and hope.",
-      "Strong influence from Japanese art in its composition.",
-      "One of his most delicate and joyful works."
+      "Almond blossom was one of Van Gogh’s favourite subjects.",
+      "The branches symbolize new life, as almond trees bloom early in spring.",
+      "Van Gogh was inspired by Japanese printmaking — seen in the bold outlines and composition.",
+      "He painted this as a gift for his brother Theo and sister-in-law Jo.",
+      "It celebrated the birth of their son, Vincent Willem."
     ]
+
   },
   {
-    "title": "Seascape",
+    "title": "Seascape – June 1888",
     "image": "seascape.jpg",
     "facts": [
-      "Painted during his time in Saintes-Maries-de-la-Mer.",
-      "Captures the movement of the Mediterranean Sea.",
-      "Thick, impasto brushstrokes mimic waves and wind.",
-      "An example of Van Gogh’s love of nature’s power."
+      "Van Gogh used bold strokes of blue, white, green, and yellow to paint the sea.",
+      "He applied some colours with a palette knife to capture light through the waves.",
+      "He was fascinated by the Mediterranean’s shifting colours — green, blue, purple, pink, and grey.",
+      "He described the sea as having a 'mackerel-like' quality — always changing.",
+      "The bright red signature in the foreground was meant as a 'red note in the green'."
     ]
   }
 ]

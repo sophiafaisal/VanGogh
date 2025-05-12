@@ -12,11 +12,29 @@
 </head>
 
 <body>
-  <div class="top-bar">
-    <h1>Van Gogh’s Art</h1>
-    <nav>
-      <a href="/">Home</a> |
-      <a href="/learn" style="color: #f9f06b">Learn</a> |
+  <div class="top-bar" style="display: flex; justify-content: space-between; padding: 20px;">
+    <!-- Left: Title + Search -->
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <h1 style="margin: 0;">
+        <a href="/" style="text-decoration: none; color: white;">Van Gogh’s Art</a>
+      </h1>
+  
+      <input id="searchInput" list="autocompleteOptions" placeholder="Search painting..." 
+             style="padding: 8px 12px; border-radius: 4px; border: none; width: 180px;">
+      <datalist id="autocompleteOptions"></datalist>
+  
+      <button onclick="searchPainting()" 
+              style="padding: 8px 14px; border-radius: 4px; border: none; background-color: #f9f06b; font-weight: bold;">
+        Search
+      </button>
+    </div>
+  
+    <!-- Right: Nav links -->
+    <nav style="font-size: 1.1rem;">
+      <a href="/">Home</a>
+      <span class="nav-divider"></span>
+      <a href="/learn" style="color: #f9f06b">Learn</a>
+      <span class="nav-divider"></span>
       <a href="/quiz">Quiz</a>
     </nav>
   </div>
@@ -24,39 +42,39 @@
   <div class="section-title">
     Select an art piece to learn more about!
   </div>
-
+  <a href="/my_activity" class="floating-activity-btn">📋 My Activity</a>
   <div class="gallery-wrapper">
     <div class="gallery">
-      <a href="/learn/1">
+      <a href="/learn/1" {% if visited.get('1') %}class="visited"{% endif %}>
         <img src="/static/sunflowers.jpg" class="row1" alt="Sunflowers">
-        <div class = "painting_title"> Sunflower </div>
+        <div class="painting_title"> Sunflowers </div>
       </a>
-      <a href="/learn/2">
+      <a href="/learn/2" {% if visited.get('2') %}class="visited"{% endif %}>
         <img src="/static/cafe-terrace-at-night.jpg" class="row1" alt="Cafe Terrace at Night">
         <div class = "painting_title"> Café Terrace at Night </div>
       </a>
-      <a href="/learn/3">
+      <a href="/learn/3" {% if visited.get('3') %}class="visited"{% endif %}>
         <img src="/static/irises.jpeg" class="row1" alt="Irises">
         <div class = "painting_title"> Irises </div>
       </a>
-      <a href="/learn/4">
+      <a href="/learn/4" {% if visited.get('4') %}class="visited"{% endif %}>
         <img src="/static/selfportrait.webp" class="row1" alt="Self Portrait as a Painter">
         <div class = "painting_title"> Self Portrait as a Painter </div>
       </a>
   
-      <a href="/learn/5">
+      <a href="/learn/5" {% if visited.get('5') %}class="visited"{% endif %}>
         <img src="/static/thebedroom.jpg" class="row2" alt="The Bedroom">
         <div class = "painting_title"> The Bedroom </div>
       </a>
-      <a href="/learn/6">
+      <a href="/learn/6" {% if visited.get('6') %}class="visited"{% endif %}>
         <img src="/static/potatoeaters.jpg" class="row2" alt="The Potato Eaters">
         <div class = "painting_title"> The Potato Eaters </div>
       </a>
-      <a href="/learn/7">
+      <a href="/learn/7" {% if visited.get('7') %}class="visited"{% endif %}>
         <img src="/static/almondcherryblossom.jpg" class="row2" alt="Almond Blossom">
         <div class = "painting_title"> Almond Blossom </div>
       </a>
-      <a href="/learn/8">
+      <a href="/learn/8" {% if visited.get('8') %}class="visited"{% endif %}>
         <img src="/static/seascape.jpg" class="row2" alt="Seascape">
         <div class = "painting_title"> Seascape </div>
       </a>
@@ -64,5 +82,53 @@
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const paintingTitles = [
+      "Sunflowers",
+      "Café Terrace at Night",
+      "Irises",
+      "Self Portrait as a Painter",
+      "The Bedroom",
+      "The Potato Eaters",
+      "Almond Blossom",
+      "Seascape"
+    ];
+  
+    function searchPainting() {
+      const input = document.getElementById('searchInput').value.trim().toLowerCase();
+      const match = paintingTitles.find(title => title.toLowerCase() === input);
+  
+      if (match) {
+        // Redirect to the corresponding lesson (assuming 1-indexed order)
+        const index = paintingTitles.findIndex(title => title === match) + 1;
+        window.location.href = `/learn/${index}`;
+      } else {
+        alert("Sorry, we don't have that painting here.");
+      }
+    }
+  
+    // Optional: autocomplete
+    document.getElementById('searchInput').addEventListener('input', function () {
+      const input = this.value.toLowerCase();
+      const suggestions = paintingTitles.filter(title =>
+        title.toLowerCase().startsWith(input)
+      );
+  
+      this.setAttribute('list', 'autocompleteOptions');
+      const datalist = document.getElementById('autocompleteOptions') || document.createElement('datalist');
+      datalist.id = 'autocompleteOptions';
+      datalist.innerHTML = '';
+  
+      suggestions.forEach(title => {
+        const option = document.createElement('option');
+        option.value = title;
+        datalist.appendChild(option);
+      });
+  
+      document.body.appendChild(datalist);
+    });
+  </script>
+
 </body>
 </html>

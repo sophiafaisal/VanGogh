@@ -1,5 +1,4 @@
 /* Homepage */
-
 html, body {
     height: 100%;
     margin: 0;
@@ -31,6 +30,17 @@ html, body {
     font-size: 28px;          /* match h1 size */
     line-height: 1;
 }
+
+.top-bar h1 a {
+  color: white;
+  text-decoration: none;
+}
+
+.top-bar h1 a:hover {
+  color: white;
+  text-decoration: none;
+}
+
 .highlight-box, .quote-box {
     background-color: white;
     color: #c1962c;
@@ -40,7 +50,7 @@ html, body {
     max-width: 600px;
     font-weight: 700;         /* match h1 weight */
     font-size: 25px;
-    font-family: 'Poppins' , poppins;
+    font-family: 'Poppins';
 }
 .quote-box {
     position: absolute;
@@ -78,6 +88,7 @@ html, body {
     margin: 0 auto 60px;
     padding: 40px;
     max-width: 1200px;
+    padding: 40px 20px 10px 20px;  /* ↓ Reduce bottom padding */
   }
   
   .gallery {
@@ -113,8 +124,9 @@ html, body {
     background: white;
     border-radius: 12px;
     padding: 40px;
-    margin: 40px auto;
-    max-width: 1000px;
+    margin: 5px auto;
+    margin-bottom: 20px;
+    width: 1000px;
     display: flex;
     gap: 40px;
     color: #8c6200;
@@ -123,7 +135,7 @@ html, body {
   }
   
   .container-box img {
-    width: 400px;
+    width: 450px;
     height: 100%;              /* ✅ stretch to match text box */
     object-fit: cover;         /* ✅ keep aspect ratio and fill */
     border-radius: 8px;
@@ -344,7 +356,8 @@ html, body {
   padding: 14px 38px;
   border-radius: 12px;
   font-weight: 700;
-  margin: 0 8px;
+  padding-bottom: 10px;
+  margin: 0 8px 5px 5px;
   transition: transform 0.13s, box-shadow 0.19s;
   box-shadow: 0 2px 8px rgba(60,60,60,0.12);
 }
@@ -382,3 +395,63 @@ body {
 .incorrect-item strong {
   color: #c0392b;
 }
+
+/*
+.gallery a.visited .painting_title {
+  color: #c1aa71 !important;  
+}
+.gallery a.visited img:hover {
+  filter: grayscale(10%) brightness(1) contrast(1);
+  opacity: 1;
+}
+  */
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.gallery a.visited img {
+  filter: grayscale(30%) brightness(0.93) contrast(0.93);
+  opacity: 0.85;
+  transition: filter 0.5s, opacity 0.5s;
+}
+.gallery a.visited img:hover {
+  filter: grayscale(10%) brightness(1) contrast(1);
+  opacity: 1;
+}
+
+.gallery a.visited .painting_title {
+  color: #c1aa71 !important;
+}
+
+.nav-divider {
+  display: inline-block;
+  width: 2px;
+  height: 35px;
+  background-color: white;
+  margin: 0 5px;  /* adjust spacing */
+  vertical-align: middle;
+}
+
+.floating-activity-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #f9f06b;
+  color: black;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.floating-activity-btn:hover {
+  background-color: #ffe55c;
+}
+
+

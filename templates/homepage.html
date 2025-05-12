@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Van Gogh's Art</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
      <!-- jQuery -->
      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -14,27 +14,101 @@
         
 </head>
 <body>
-    <div class="top-bar">
-        <h1>Van Gogh’s Art</h1>
-        <nav>
-            <a href="/" style="color: #f9f06b;">Home</a> |
-            <a href="/learn">Learn</a> |
-            <a href="/quiz">Quiz</a>
+
+      <div class="top-bar" style="display: flex; justify-content: space-between; padding: 20px;">
+        <!-- Left: Title + Search -->
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <h1 style="margin: 0;">
+            <a href="/" style="text-decoration: none; color: white;">Van Gogh’s Art</a>
+          </h1>
+      
+          <input id="searchInput" list="autocompleteOptions" placeholder="Search painting..." 
+                 style="padding: 8px 12px; border-radius: 4px; border: none; width: 180px;">
+          <datalist id="autocompleteOptions"></datalist>
+      
+          <button onclick="searchPainting()" 
+                  style="padding: 8px 14px; border-radius: 4px; border: none; background-color: #f9f06b; font-weight: bold;">
+            Search
+          </button>
+        </div>
+      
+        <!-- Right: Nav links -->
+        <nav style="font-size: 1.1rem;">
+          <a href="/" style="color: #f9f06b">Home</a>
+          <span class="nav-divider"></span>
+          <a href="/learn">Learn</a>
+          <span class="nav-divider"></span>
+          <a href="/quiz">Quiz</a>
         </nav>
-    </div>
+      </div>
+      
+      
+    <a href="/my_activity" class="floating-activity-btn">📋 My Activity</a>
 
     <div class="highlight-box position-absolute top-50 end-0 translate-middle-y me-5">
-        <p><strong>Everyone’s heard of Van Gogh’s masterpieces, but few know the stories behind them.</strong></p>
-        <p>Welcome to a journey into his mind! </p>
+        <p style="font-size: 25px; font-family: 'Times New Roman', serif;"><strong>Everyone’s heard of Van Gogh’s masterpieces, but few know the stories behind them.</strong></p>
+        <p style="font-size: 25px; font-family: 'Times New Roman', serif;">Welcome to a journey into his mind! </p>
         <a href="/learn" class="btn btn-warning mt-3 fw-bold">Start</a>
     </div>
 
     <div class="quote-box">
-        <p><strong>There are colours that make each other shine, that make a couple, complete each other like man and wife.</strong><br>
-        — Vincent Van Gogh</p>
+        <p style="font-size: 22px; font-family: 'Times New Roman', serif;">
+          <strong>There are colours that make each other shine, that make a couple, complete each other like man and wife.</strong><br>
+          — Vincent Van Gogh
+        </p>            
     </div>
+      
+      
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const paintingTitles = [
+          "Sunflowers",
+          "Café Terrace at Night",
+          "Irises",
+          "Self Portrait as a Painter",
+          "The Bedroom",
+          "The Potato Eaters",
+          "Almond Blossom",
+          "Seascape"
+        ];
+      
+        function searchPainting() {
+          const input = document.getElementById('searchInput').value.trim().toLowerCase();
+          const match = paintingTitles.find(title => title.toLowerCase() === input);
+      
+          if (match) {
+            // Redirect to the corresponding lesson (assuming 1-indexed order)
+            const index = paintingTitles.findIndex(title => title === match) + 1;
+            window.location.href = `/learn/${index}`;
+          } else {
+            alert("Sorry, we don't have that painting here.");
+          }
+        }
+      
+        // Optional: autocomplete
+        document.getElementById('searchInput').addEventListener('input', function () {
+          const input = this.value.toLowerCase();
+          const suggestions = paintingTitles.filter(title =>
+            title.toLowerCase().startsWith(input)
+          );
+      
+          this.setAttribute('list', 'autocompleteOptions');
+          const datalist = document.getElementById('autocompleteOptions') || document.createElement('datalist');
+          datalist.id = 'autocompleteOptions';
+          datalist.innerHTML = '';
+      
+          suggestions.forEach(title => {
+            const option = document.createElement('option');
+            option.value = title;
+            datalist.appendChild(option);
+          });
+      
+          document.body.appendChild(datalist);
+        });
+    </script>
+      
 </body>
 </html>
